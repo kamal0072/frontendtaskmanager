@@ -8,8 +8,7 @@ function App() {
 
   useEffect(() => {
     axios
-      //   .get("https://taskmanager-wmy6.onrender.com/api/tasks/")
-      .get("http://127.0.0.1:8000/api/tasks/")
+        .get("https://taskmanager-wmy6.onrender.com/api/tasks/")
       .then((response) => setTasks(response.data))
       .then((err) => console.log(err));
   }, []);
@@ -21,8 +20,7 @@ function App() {
       return;
     }
     axios
-      //   .post("https://taskmanager-wmy6.onrender.com/api/tasks/",
-      .post("http://127.0.0.1:8000/api/tasks/", {
+        .post("https://taskmanager-wmy6.onrender.com/api/tasks/", {
         title: newTask,
         completed: false,
       })
@@ -39,8 +37,7 @@ function App() {
 
   const delTask = (id) => {
     axios
-      //   .delete(`https://taskmanager-wmy6.onrender.com/api/tasks/${id}/`)
-      .delete(`http://127.0.0.1:8000/api/tasks/${id}/`)
+      .delete(`https://taskmanager-wmy6.onrender.com/api/tasks/${id}/`)
       .then(() => setTasks(tasks.filter((task) => task.id !== id)))
       .then((err) => console.log(err));
   };
@@ -94,8 +91,8 @@ function App() {
                             className="ml-2 bg-green-500 text-white p-1"
                             >
                             Done
-                            </button>
-                        )}
+                            </button> 
+                        )}<button onClick={() => delTask(task.id)} className="ml-2 bg-red-500 text-white p-1" style={{ float: "right" }}>Delete</button>
                         </li>
                     ))}
                 </ul>
