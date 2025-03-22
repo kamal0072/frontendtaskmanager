@@ -1,4 +1,4 @@
-import { useState, use, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import './App.css'
 import axios from "axios";
 
@@ -8,7 +8,7 @@ function App() {
 
     useEffect(() => {
         axios
-        .get("http://127.0.0.1:8000/api/tasks/")
+        .get("https://backendtaskmanager-1fva.onrender.com/api/tasks/")
         .then((response) => setTasks(response.data))
         .then((err) => console.log(err));
     }, []);
@@ -20,7 +20,7 @@ function App() {
             return
         };
         axios
-        .post("http://127.0.0.1:8000/api/tasks/", {title: newTask,completed : false})
+        .post("https://backendtaskmanager-1fva.onrender.com/api/tasks/", {title: newTask,completed : false})
         .then((response) => setTasks([...tasks, response.data]))
         .catch((err)=>{
             if (err.response && err.response.status === 400) {
@@ -35,7 +35,7 @@ function App() {
 
     const markCompleted = (id) => {
         axios
-        .patch(`http://127.0.0.1:8000/api/tasks/${id}/`, {completed: true})
+        .patch(`https://backendtaskmanager-1fva.onrender.com/api/tasks/${id}/`, {completed: true})
         .then(() => setTasks(tasks.map(task => task.id === id ? { ...task, completed: true } : task)))
         .then((err) => console.log(err));
     };
